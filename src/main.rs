@@ -5,6 +5,6 @@ use zero2prod::run;
 async fn main() -> Result<(), std::io::Error> {
     let default_port = "8000";
     let listener = TcpListener::bind(format!("127.0.0.1:{}", &default_port))
-        .unwrap_or_else(|_| panic!("Failed to bind port {}", &default_port));
+        .unwrap_or_else(|err| panic!("Failed to bind port {}: {}", &default_port, &err));
     run(listener)?.await
 }
